@@ -8,20 +8,7 @@ class GiphyList extends Component {
         super();
 
         this.state = {
-            gifs: [
-                {
-                    id: 1,
-                    url: 'http://fakeimg.pl/300/'
-                },
-                {
-                    id: 2,
-                    url: 'http://fakeimg.pl/300/'
-                },
-                {
-                    id: 3,
-                    url: 'http://fakeimg.pl/300/'
-                }
-            ],
+            gifs: [],
             term: ''
         }
         this.handleTermChange = this.handleTermChange.bind(this);
@@ -29,17 +16,16 @@ class GiphyList extends Component {
 
     handleTermChange(aterm) {
       const api_key = '36ulVZPFFmbZmwNzhLuwWPCKcUgQKjVc';
-      this.setState({term: aterm})
-      const url = `http://api.giphy.com/v1/gifs/search?q=${this.state.term}&api_key=${api_key}`;
+      const url = `http://api.giphy.com/v1/gifs/search?q=${aterm}&api_key=${api_key}`;
       request.get(url, (err, res) => {
-            this.setState({gifs: res.body.data})
+            this.setState({gifs: res.body.data});
         });
     }
 
     render() {
         return (
             <div>
-                <SearchBar onTermChange={this.handleTermChange} />
+                <SearchBar onClick={this.handleTermChange} />
                 <GifList gifs={this.state.gifs} />
             </div>
         );

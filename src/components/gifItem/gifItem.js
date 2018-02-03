@@ -1,9 +1,9 @@
 import React from 'react';
-
+import './gifItem.css'
 const GifItem = (image) => {
   return (
-    <li>
-      <img src={image.gif.url} />
+    <li id='item'>
+      <img src={image.gif.images.fixed_height.url} />
     </li>
   )
 };
